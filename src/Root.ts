@@ -6,14 +6,13 @@ import {
   Physics,
   Vector,
 } from "@hex-engine/2d";
-import Floor from "./Floor";
-import Box from "./Box";
+import Layout from './Layout';
 
 export default function Root() {
   useType(Root);
 
   const canvas = useNewComponent(() => Canvas({ backgroundColor: "white" }));
-  canvas.fullscreen({ pixelZoom: 3 });
+  canvas.fullscreen({ pixelZoom: 0.5 });
 
   useNewComponent(Physics.Engine);
 
@@ -22,6 +21,11 @@ export default function Root() {
     canvas.element.height / 2
   );
 
-  useChild(() => Floor(canvasCenter.addY(100)));
-  useChild(() => Box(canvasCenter));
+  useChild(() => {
+    return Layout(
+      canvas.element.width / 3.5, 
+      canvas.element.height - 10,
+      canvasCenter,
+    );
+  })
 }
