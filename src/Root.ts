@@ -13,9 +13,9 @@ export default function Root() {
   useType(Root);
 
   const canvas = useNewComponent(() => Canvas({ backgroundColor: "white" }));
-  canvas.fullscreen({ pixelZoom: 0.5 });
+  const physic = useNewComponent(() =>  Physics.Engine({gravity: new Vector(0, 0.1)}));
 
-  useNewComponent(Physics.Engine);
+  canvas.fullscreen({ pixelZoom: 0.5 });
 
   const canvasCenter = new Vector(
     canvas.element.width / 2,
