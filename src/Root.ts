@@ -36,6 +36,7 @@ export default function Root() {
         canvas.element.width / 2,
         10,
       ),
+      0.1
     )
   })
 }

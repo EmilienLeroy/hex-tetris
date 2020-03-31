@@ -1,8 +1,8 @@
 import { useType, useNewComponent, Polygon, Vector, Physics, useDraw, Geometry } from "@hex-engine/2d"
 
-export default function Wall(width: number, height: number, position: Vector) {
-    useType(Wall);
-    const wall = useNewComponent(() => {
+export default function Floor(width: number, height: number, position: Vector) {
+    useType(Floor);
+    const floor = useNewComponent(() => {
         return Geometry({
             shape: Polygon.rectangle(new Vector(width, height)),
             position,
@@ -10,11 +10,11 @@ export default function Wall(width: number, height: number, position: Vector) {
     });
 
     useNewComponent(() => {
-        return Physics.Body(wall, { isStatic: true });
+        return Physics.Body(floor, { isStatic: true });
     })
 
     useDraw((context) => {
         context.fillStyle = "grey";
-        wall.shape.draw(context, "fill");
+        floor.shape.draw(context, "fill");
     });
 }    
