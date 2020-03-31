@@ -1,7 +1,18 @@
-import { useType, useNewComponent, Geometry, Polygon, Vector, Physics, useDraw, Keyboard, useUpdate } from "@hex-engine/2d";
+import { 
+    useType,
+    useNewComponent, 
+    Geometry, 
+    Polygon, 
+    Vector, 
+    Physics, 
+    useDraw, 
+    Keyboard, 
+    useUpdate 
+} from "@hex-engine/2d";
 
-export default function Base(position: Vector) {
+export default function Base(position: Vector, frictionAir: number = 1) {
     useType(Base);
+    let color: string = 'red';
     const move = new Vector(0, 0);
     const geometry = useNewComponent(() => {
         return Geometry({
@@ -12,9 +23,13 @@ export default function Base(position: Vector) {
 
     const keyboard = useNewComponent(Keyboard);
 
-    useNewComponent(() => {
-        return Physics.Body(geometry);
+    const physic = useNewComponent(() => {
+        return Physics.Body(geometry, { frictionAir });
     });
+
+    physic.onCollision((other) => {
+        color = 'blue';
+    })
 
     useUpdate(() => {
         if(keyboard.pressed.has('ArrowLeft')) {
@@ -29,8 +44,7 @@ export default function Base(position: Vector) {
     })
 
     useDraw((context) => {
-        
-        context.fillStyle = "red";
+        context.fillStyle = color;
         geometry.shape.draw(context, 'fill');
     });
 
