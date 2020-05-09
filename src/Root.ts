@@ -21,7 +21,7 @@ export default function Root() {
     canvas.element.width / 2,
     canvas.element.height / 2
   );
-
+  
   useChild(() => {
     return Layout(
       canvas.element.width / 3.5, 
