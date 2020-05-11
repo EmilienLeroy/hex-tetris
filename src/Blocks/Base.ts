@@ -30,21 +30,20 @@ export default function Base(position: Vector, frictionAir: number = 1) {
 
     physic.onCollision((other) => {
         color = 'blue';
-        if(other.entity) {
+        if(other.entity && other.entity.name == 'Floor') {
             isOnFloor = true;
         }
     })
 
     useUpdate(() => {
         if(keyboard.pressed.has('ArrowLeft') && !isOnFloor) {
-            move.subtractXMutate(50);
+            physic.setVelocity(new Vector(-20, 10))
         }
 
         if(keyboard.pressed.has('ArrowRight') && !isOnFloor) {
-            move.addXMutate(50);
+            physic.setVelocity(new Vector(20, 10))
         }
 
-        geometry.position.addXMutate(move.x);
     })
 
     useDraw((context) => {
