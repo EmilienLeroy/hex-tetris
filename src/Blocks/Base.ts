@@ -36,12 +36,14 @@ export default function Base(position: Vector, frictionAir: number = 1) {
     })
 
     useUpdate(() => {
-        if(keyboard.pressed.has('ArrowLeft') && !isOnFloor) {
-            physic.setVelocity(new Vector(-20, 10))
+	const y = physic.body.velocity.y;
+
+        if(keyboard.pressed.has('ArrowLeft') && !isOnFloor) {   
+            physic.setVelocity(new Vector(-10, y));
         }
 
         if(keyboard.pressed.has('ArrowRight') && !isOnFloor) {
-            physic.setVelocity(new Vector(20, 10))
+            physic.setVelocity(new Vector(10, y));
         }
 
     })
