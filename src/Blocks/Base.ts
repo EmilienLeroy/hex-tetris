@@ -28,6 +28,8 @@ export default function Base(position: Vector, frictionAir: number = 1) {
         return Physics.Body(geometry, { frictionAir });
     });
 
+    physic.setInertia(Infinity);
+
     physic.onCollision((other) => {
         color = 'blue';
         if(other.entity && other.entity.name == 'Floor') {
@@ -53,5 +55,8 @@ export default function Base(position: Vector, frictionAir: number = 1) {
         geometry.shape.draw(context, 'fill');
     });
 
-    
+    return {
+    	geometry,
+	physic
+    };
 }

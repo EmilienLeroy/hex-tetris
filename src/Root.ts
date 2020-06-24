@@ -8,6 +8,7 @@ import {
 } from "@hex-engine/2d";
 import Layout from './Layout';
 import Base from './Blocks/Base';
+import Cube from './Blocks/Cube';
 
 export default function Root() {
   useType(Root);
@@ -31,7 +32,7 @@ export default function Root() {
   });
 
   useChild(() => {
-    return Base(
+    return Cube(
       new Vector(
         canvas.element.width / 2,
         10,
